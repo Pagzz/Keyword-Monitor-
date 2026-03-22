@@ -14,6 +14,30 @@
       "case_sensitive": false
     }
   ],
+  "facebook": {
+    "access_token": "YOUR_LONG_LIVED_ACCESS_TOKEN",
+    "poll_interval_seconds": 60,
+    "monitors": [
+      {
+        "name": "Home Improvement Groups",
+        "type": "group",
+        "ids": ["GROUP_ID_1", "GROUP_ID_2"],
+        "keywords": ["electrician", "plumber", "HVAC", "foundation", "roof"],
+        "watch_posts": true,
+        "watch_comments": true,
+        "case_sensitive": false
+      },
+      {
+        "name": "Home Improvement Pages",
+        "type": "page",
+        "ids": ["PAGE_ID_1"],
+        "keywords": ["electrician", "plumber", "HVAC", "foundation", "roof"],
+        "watch_posts": true,
+        "watch_comments": false,
+        "case_sensitive": false
+      }
+    ]
+  },
   "notifications": {
     "desktop": true,
     "sound": true,

@@ -8,6 +8,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
 from monitor import CONFIG, log, watch_comments, watch_submissions
+from facebook_monitor import watch_facebook
 
 PORT = 3013
 
@@ -47,6 +48,14 @@ async def lifespan(app: FastAPI):
             threading.Thread(target=watch_submissions, args=(monitor,), daemon=True).start()
         if monitor.get("watch_comments", True):
             threading.Thread(target=watch_comments, args=(monitor,), daemon=True).start()
+
+    for fb_monitor in CONFIG.get("facebook", {}).get("monitors", []):
+        threading.Thread(
+            target=watch_facebook,
+            args=(fb_monitor, _monitor.fire_alert),
+            daemon=True,
+        ).start()
+
     yield
 
 
