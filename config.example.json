@@ -1,0 +1,30 @@
+{
+  "reddit": {
+    "client_id": "YOUR_CLIENT_ID",
+    "client_secret": "YOUR_CLIENT_SECRET",
+    "user_agent": "SocialSpy/1.0 by YourUsername"
+  },
+  "monitors": [
+    {
+      "name": "Home Improvement Monitor",
+      "subreddits": ["HomeImprovement", "DIY", "AskAContractor"],
+      "keywords": ["electrician", "plumber", "HVAC", "foundation", "roof"],
+      "watch_posts": true,
+      "watch_comments": true,
+      "case_sensitive": false
+    }
+  ],
+  "notifications": {
+    "desktop": true,
+    "sound": true,
+    "email": {
+      "enabled": false,
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "sender": "your@gmail.com",
+      "password": "your_app_password",
+      "recipient": "your@gmail.com"
+    },
+    "log_file": "alerts.log"
+  }
+}
