@@ -1,13 +1,22 @@
 import json
+import os
 import time
 from datetime import datetime
 
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 with open("config.json") as f:
     CONFIG = json.load(f)
 
 FB_CFG = CONFIG.get("facebook", {})
+
+# Override access token with .env value if present
+if os.getenv("FACEBOOK_ACCESS_TOKEN"):
+    FB_CFG["access_token"] = os.getenv("FACEBOOK_ACCESS_TOKEN")
+
 BASE_URL = "https://graph.facebook.com/v19.0"
 
 

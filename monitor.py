@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import smtplib
 import threading
 import time
@@ -9,12 +10,23 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 import praw
+from dotenv import load_dotenv
 from plyer import notification
+
+load_dotenv()
 
 # ── Setup ──────────────────────────────────────────────────────────────────────
 
 with open("config.json") as f:
     CONFIG = json.load(f)
+
+# Override config credentials with .env values if present
+if os.getenv("REDDIT_CLIENT_ID"):
+    CONFIG["reddit"]["client_id"] = os.getenv("REDDIT_CLIENT_ID")
+if os.getenv("REDDIT_CLIENT_SECRET"):
+    CONFIG["reddit"]["client_secret"] = os.getenv("REDDIT_CLIENT_SECRET")
+if os.getenv("REDDIT_USER_AGENT"):
+    CONFIG["reddit"]["user_agent"] = os.getenv("REDDIT_USER_AGENT")
 
 logging.basicConfig(
     level=logging.INFO,
