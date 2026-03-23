@@ -69,6 +69,61 @@ def get_alerts():
     return list(alerts)
 
 
+@app.get("/privacy", response_class=HTMLResponse)
+def privacy():
+    return """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Privacy Policy — Social Spy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 60px auto;
+           padding: 0 24px; color: #222; line-height: 1.7; }
+    h1 { font-size: 1.8rem; margin-bottom: 4px; }
+    h2 { font-size: 1.1rem; margin-top: 32px; }
+    p, li { font-size: 0.95rem; color: #444; }
+    footer { margin-top: 60px; font-size: 0.8rem; color: #999; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p><strong>Last updated: March 2025</strong></p>
+
+  <p>Social Spy is a keyword monitoring tool that connects community members with
+  relevant industry experts. This policy explains how we handle data.</p>
+
+  <h2>What We Collect</h2>
+  <p>Social Spy monitors publicly available posts and comments on platforms such as
+  Reddit and Facebook Pages. We do not collect personal information about users who
+  post content. We only store the text content, URL, and timestamp of posts that
+  match configured keywords.</p>
+
+  <h2>How We Use Data</h2>
+  <p>Matched content is used solely to alert a human operator so they can connect
+  an appropriate industry expert to respond to the community. Data is not sold,
+  shared with third parties, or used for advertising.</p>
+
+  <h2>Data Retention</h2>
+  <p>Alert data is stored temporarily in memory and in a local log file. No
+  personal user data is retained beyond what is publicly visible on the
+  originating platform.</p>
+
+  <h2>Facebook Data</h2>
+  <p>This app accesses publicly available Facebook Page content via the Facebook
+  Graph API in read-only mode. We do not post, message users, or modify any
+  content on Facebook.</p>
+
+  <h2>Contact</h2>
+  <p>For any questions about this policy, please open an issue at our
+  <a href="https://github.com/Pagzz/Keyword-Monitor-">GitHub repository</a>.</p>
+
+  <footer>Social Spy &mdash; Keyword Monitor</footer>
+</body>
+</html>
+"""
+
+
 @app.get("/status")
 def get_status():
     monitors = [
